@@ -1,22 +1,11 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fullapp');
 var db = mongoose.connection;
 var https = require('https');
+var schemas = require('./schemas.js');
 
-var eventSchema = mongoose.Schema({
+var Event = mongoose.model('Event', schemas.eventSchema);
 
-    owner : String,
-    comments : Array,
-    text : String,
-    score : { type : Number, default : 0 },
-    date : { type : Date, default: Date.now },
-    picture_link : String,
-    instagram_id : String,
-    
-});
-
-var Event = mongoose.model('Event', eventSchema);
-
+mongoose.connect('mongodb://localhost/fullapp');
 
 
 var requestThing = function() {
