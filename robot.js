@@ -3,8 +3,6 @@ module.exports = function(Event) {
     var https = require('https');
 
 
-    console.log("Started script");
-
     var options =  {
         hostname : 'api.instagram.com',
         port : 443,
@@ -45,6 +43,8 @@ module.exports = function(Event) {
             Event.find({ "instagram_id" : newEvent.instagram_id }, generateFunction(newEvent) );
 
         }
+
+        console.log("Reloaded");
     }
 
 
