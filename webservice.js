@@ -4,7 +4,14 @@ module.exports = function(Event) {
     var app = express();
 
     app.get('/posts', function(req, res) {
-        Event.find().limit(10).sort('-instagram_date').exec(function(err, events) {
+        var query = Event.find().limit(30);
+
+        if ( req.query.hot === 'true' )
+            query.sort({ 'score' : -1, 'instagram_date' : -1 });
+        else
+            query.sort('-instagram_date');
+
+        query.exec(function(err, events) {
             res.json(events);
         });    
     });
@@ -12,7 +19,7 @@ module.exports = function(Event) {
     var generateLikeFunction = function(amount) {
         return function(req, res) {
             Event.findOne({ "_id" : req.params.id }, function(err, event) {
-                score += amount;
+                event.score += amount;
                 event.save(function(err, event) {
                     res.json(event);
                 });
