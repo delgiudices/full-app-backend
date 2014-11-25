@@ -9,14 +9,19 @@ module.exports = function(Event) {
         });    
     });
 
-    app.get('/posts/:id/up', function(req, res) {
-        Event.findOne({ "_id" : req.params.id }, function(err, event) {
-            event.score++;
-            event.save(function(event) {
-                res.json(event);
+    var generateLikeFunction = function(amount) {
+        return function(req, res) {
+            Event.findOne({ "_id" : req.params.id }, function(err, event) {
+                score += amount;
+                event.save(function(err, event) {
+                    res.json(event);
+                });
             });
-        });
-    });
+        }
+    }
+
+    app.get('/posts/:id/up', generateLikeFunction(1));
+    app.get('/posts/:id/down', generateLikeFunction(-1)); 
 
     app.listen(1337);
 
