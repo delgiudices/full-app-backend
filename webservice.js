@@ -4,7 +4,7 @@ module.exports = function(Event) {
     var app = express();
 
     app.get('/posts', function(req, res) {
-        Event.find().limit(10).sort('-date').exec(function(err, events) {
+        Event.find().limit(10).sort('-instagram_date').exec(function(err, events) {
             res.json(events);
         });    
     });
