@@ -9,6 +9,7 @@ returnObject["eventSchema"] = mongoose.Schema({
     date : { type : Date, default: Date.now },
     picture_link : String,
     instagram_id : String,
+    instagram_date : Number,
     
 });
 

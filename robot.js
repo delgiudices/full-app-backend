@@ -22,6 +22,7 @@ module.exports = function(Event) {
             newEvent_data["text"] = posts[postKey].caption.text;
             newEvent_data["picture_link"] = posts[postKey].images.standard_resolution.url;
             newEvent_data["instagram_id"] = posts[postKey].id;
+            newEvent_data["instagram_date"] = posts[postKey].created_time;
 
             var newEvent = new Event(newEvent_data);
 
