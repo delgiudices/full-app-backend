@@ -48,20 +48,32 @@ module.exports = function(Event) {
         console.log("Reloaded");
     }
 
+    var request = function() {
 
-    console.log("Starting request");
-    var req = https.request(options, function(res) {
-        var json_data = '';
+        var req = https.request(options, function(res) {
+            var json_data = '';
 
-        res.on('data', function(d) { 
-            json_data += d;
+            res.on('data', function(d) { 
+                json_data += d;
+            });
+
+            res.on('end', function() {
+                parseData(json_data);  
+            });
         });
 
-        res.on('end', function() {
-            parseData(json_data);  
-        });
-    });
+    }
+
+    var minutes = function(amount) { 
+      return amount * 60000;
+    }
+
+
+    var delay_amount = 20;
+    setInterval(request, minutes(delay_amount));
+
+    console.log("Robot was set to reload each " + delay_amount + " minutes.");
+
 
     req.end();
-
 }
