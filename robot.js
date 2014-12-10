@@ -74,5 +74,8 @@ module.exports = function(Event) {
     var delay_amount = 120;
     setInterval(request, minutes(delay_amount));
 
+    // start request first time
+    request();
+
     console.log("Robot was set to reload each " + delay_amount + " minutes.");
 }
