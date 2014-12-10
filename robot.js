@@ -64,18 +64,15 @@ module.exports = function(Event) {
             });
         });
 
+        req.end();
     }
 
     var minutes = function(amount) { 
       return amount * 60000;
     }
 
-
     var delay_amount = 120;
     setInterval(request, minutes(delay_amount));
 
     console.log("Robot was set to reload each " + delay_amount + " minutes.");
-
-
-    req.end();
 }
