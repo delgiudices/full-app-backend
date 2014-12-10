@@ -3,6 +3,7 @@ var returnObject = {};
 returnObject["eventSchema"] = mongoose.Schema({
 
     owner : String,
+    profile_picture : { type : String, default: "" },
     comments : Array,
     text : String,
     score : { type : Number, default : 0 },

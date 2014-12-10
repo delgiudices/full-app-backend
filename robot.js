@@ -18,11 +18,13 @@ module.exports = function(Event) {
         for ( postKey in posts ) {
 
             var newEvent_data = {};
+
             newEvent_data["owner"] = posts[postKey].user.username;
             newEvent_data["text"] = posts[postKey].caption.text;
             newEvent_data["picture_link"] = posts[postKey].images.standard_resolution.url;
             newEvent_data["instagram_id"] = posts[postKey].id;
             newEvent_data["instagram_date"] = posts[postKey].created_time;
+            newEvent_data["profile_picture"] = posts[postKey].user.profile_picture;
 
             var newEvent = new Event(newEvent_data);
 
@@ -69,7 +71,7 @@ module.exports = function(Event) {
     }
 
 
-    var delay_amount = 20;
+    var delay_amount = 120;
     setInterval(request, minutes(delay_amount));
 
     console.log("Robot was set to reload each " + delay_amount + " minutes.");
