@@ -6,7 +6,14 @@ module.exports = function(Event) {
     app.get('/posts', function(req, res) {
         res.header("Access-Control-Allow-Origin", "*");
 
-        var query = Event.find().limit(30);
+        var today = new Date();
+        today.setHours(today.getHours() - 6);
+        var queryDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 8);
+        var queryTime = queryDate.getTime() / 1000;
+        
+        
+
+        var query = Event.find({ instagram_date : { "$gte" : queryTime } }).limit(30);
 
         if ( req.query.hot === 'true' )
             query.sort({ 'score' : -1, 'instagram_date' : -1 });
