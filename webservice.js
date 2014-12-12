@@ -4,7 +4,7 @@ module.exports = function(Event) {
     var app = express();
 
     app.get('/posts', function(req, res) {
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        res.header("Access-Control-Allow-Origin", "*");
 
         var query = Event.find().limit(30);
 
