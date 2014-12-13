@@ -71,7 +71,7 @@ module.exports = function(Event) {
       return amount * 60000;
     }
 
-    var delay_amount = 120;
+    var delay_amount = 1;
     setInterval(request, minutes(delay_amount));
 
     // start request first time
