@@ -20,7 +20,10 @@ module.exports = function(Event) {
             var newEvent_data = {};
 
             newEvent_data["owner"] = posts[postKey].user.username;
-            newEvent_data["text"] = posts[postKey].caption.text;
+
+            if ( posts[postKey].caption != null )
+              newEvent_data["text"] = posts[postKey].caption.text;
+              
             newEvent_data["picture_link"] = posts[postKey].images.standard_resolution.url;
             newEvent_data["instagram_id"] = posts[postKey].id;
             newEvent_data["instagram_date"] = posts[postKey].created_time;
@@ -55,19 +58,19 @@ module.exports = function(Event) {
         var req = https.request(options, function(res) {
             var json_data = '';
 
-            res.on('data', function(d) { 
+            res.on('data', function(d) {
                 json_data += d;
             });
 
             res.on('end', function() {
-                parseData(json_data);  
+                parseData(json_data);
             });
         });
 
         req.end();
     }
 
-    var minutes = function(amount) { 
+    var minutes = function(amount) {
       return amount * 60000;
     }
 
