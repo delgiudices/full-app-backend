@@ -50,7 +50,6 @@ module.exports = function(Event) {
 
         }
 
-        console.log("Reloaded");
     }
 
     var request = function() {
@@ -63,7 +62,12 @@ module.exports = function(Event) {
             });
 
             res.on('end', function() {
-                parseData(json_data);
+                try {
+                    parseData(json_data);
+                }
+                catch(err) {
+                    console.log(err);
+                }
             });
         });
 
