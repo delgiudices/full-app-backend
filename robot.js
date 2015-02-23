@@ -53,25 +53,23 @@ module.exports = function(Event) {
     }
 
     var request = function() {
+        try {
+            var req = https.request(options, function(res) {
+                var json_data = '';
 
-        var req = https.request(options, function(res) {
-            var json_data = '';
+                res.on('data', function(d) {
+                    json_data += d;
+                });
 
-            res.on('data', function(d) {
-                json_data += d;
-            });
-
-            res.on('end', function() {
-                try {
+                res.on('end', function() {
                     parseData(json_data);
-                }
-                catch(err) {
-                    console.log(err);
-                }
+                });
             });
-        });
 
-        req.end();
+            req.end();
+        } catch(ex) {
+            console.log("Some exception ocurred");
+        }
     }
 
     var minutes = function(amount) {
