@@ -51,6 +51,6 @@ module.exports = function(Event) {
     app.get('/posts/:id/up', generateLikeFunction(1));
     app.get('/posts/:id/down', generateLikeFunction(-1));
 
-    app.listen(1337);
+    app.listen(1338);
 
 }
