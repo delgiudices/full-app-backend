@@ -18,7 +18,6 @@ db.once('open', function() {
 
 
 process.on('uncaughtException', function(err) {
-    console.log("Uncaught Exception");
+    console.log("Uncaught exception");
+    console.log(JSON.toString(err));
 });
-
-
